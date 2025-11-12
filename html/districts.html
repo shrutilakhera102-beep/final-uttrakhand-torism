@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Districts of Uttarakhand - Uttarakhand Tourist Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Tourist Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="districts.html" class="active">Districts</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Districts of Uttarakhand</h1>
+            <p>Explore the 13 beautiful districts of Uttarakhand, each with its unique attractions and experiences</p>
+        </div>
+    </section>
+
+    <!-- Districts Section -->
+    <section class="districts" id="districts">
+        <div class="container">
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-btn active" data-filter="all">All Districts</button>
+                <button class="filter-btn" data-filter="hill">Hill Stations</button>
+                <button class="filter-btn" data-filter="pilgrimage">Pilgrimage Sites</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+            </div>
+            <div class="districts-grid" id="districtsGrid">
+                <!-- District cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- District Details Modal -->
+    <div class="modal" id="districtModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Uttarakhand Tourist Guide</h3>
+                    <p>Your comprehensive guide to exploring the beautiful state of Uttarakhand.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="districts.html">Districts</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="restaurants.html">Restaurants</a></li>
+                        <li><a href="taxi.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="districts.html#nainital">Nainital</a></li>
+                        <li><a href="districts.html#mussoorie">Mussoorie</a></li>
+                        <li><a href="districts.html#rishikesh">Rishikesh</a></li>
+                        <li><a href="districts.html#haridwar">Haridwar</a></li>
+                        <li><a href="districts.html#valley-of-flowers">Valley of Flowers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Need Help?</h3>
+                    <p>Contact us for any travel queries or assistance.</p>
+                    <a href="contact.html" class="btn">Contact Us</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Uttarakhand Tourist Guide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/district.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        function initializeUserMenu() {
+            const authMenuContainer = document.getElementById('authMenuContainer');
+            if (!authMenuContainer) return;
+            const user = getCurrentUser();
+            const isLoggedIn = checkUserLogin();
+            if (isLoggedIn && user) {
+                authMenuContainer.innerHTML = `
+                    <div class="user-menu">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span>${user.firstName}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" onclick="viewProfile(); return false;"><i class="fas fa-user"></i> My Profile</a>
+                            <a href="#" onclick="viewBookings(); return false;"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                            <a href="#" onclick="viewFavorites(); return false;"><i class="fas fa-heart"></i> Favorites</a>
+                            <hr>
+                            <a href="#" class="logout-btn" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                `;
+                const profileBtn = document.getElementById('userProfileBtn');
+                const dropdown = document.getElementById('userDropdown');
+                if (profileBtn) {
+                    profileBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdown.classList.toggle('show');
+                    });
+                    document.addEventListener('click', (e) => {
+                        if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.remove('show');
+                        }
+                    });
+                }
+            } else {
+                authMenuContainer.innerHTML = `
+                    <div class="auth-menu">
+                        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="register-btn"><i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                `;
+            }
+        }
+        function handleLogoutClick(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                clearUserSession();
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+        function viewProfile() { alert('Profile page coming soon!'); }
+        function viewBookings() { alert('My Bookings page coming soon!'); }
+        function viewFavorites() { alert('Favorites page coming soon!'); }
+        document.addEventListener('DOMContentLoaded', () => { initializeUserMenu(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #1B7A4E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #155d3a;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Booking System Test</h1>
+    
+    <div class="test-section">
+        <h2>Step 1: Register/Login</h2>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="testEmail" value="test@example.com">
+            <label>Password:</label>
+            <input type="password" id="testPassword" value="Test1234!">
+            <label>First Name:</label>
+            <input type="text" id="testFirstName" value="Test">
+            <label>Last Name:</label>
+            <input type="text" id="testLastName" value="User">
+        </div>
+        <button onclick="testRegister()">Register New User</button>
+        <button onclick="testLogin()">Login</button>
+        <button onclick="checkToken()">Check Token</button>
+        <div id="authResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 2: Book Hotel</h2>
+        <div>
+            <label>Hotel Name:</label>
+            <input type="text" id="hotelName" value="Test Hotel Nainital">
+            <label>Check-in Date:</label>
+            <input type="date" id="checkIn" value="2025-12-01">
+            <label>Check-out Date:</label>
+            <input type="date" id="checkOut" value="2025-12-05">
+            <label>Rooms:</label>
+            <input type="number" id="rooms" value="2">
+            <label>Guests:</label>
+            <input type="number" id="guests" value="4">
+            <label>Price:</label>
+            <input type="number" id="price" value="5000">
+        </div>
+        <button onclick="testHotelBooking()">Book Hotel</button>
+        <button onclick="getHotelBookings()">Get Hotel Bookings</button>
+        <div id="hotelResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 3: Book Restaurant</h2>
+        <div>
+            <label>Restaurant Name:</label>
+            <input type="text" id="restaurantName" value="Test Restaurant">
+            <label>Date:</label>
+            <input type="date" id="resDate" value="2025-12-01">
+            <label>Time:</label>
+            <input type="time" id="resTime" value="19:00">
+            <label>Guests:</label>
+            <input type="number" id="resGuests" value="4">
+            <label>Cuisine:</label>
+            <input type="text" id="cuisine" value="Indian">
+        </div>
+        <button onclick="testRestaurantBooking()">Book Restaurant</button>
+        <button onclick="getRestaurantBookings()">Get Restaurant Bookings</button>
+        <div id="restaurantResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 4: Book Taxi</h2>
+        <div>
+            <label>Pickup Location:</label>
+            <input type="text" id="pickup" value="Dehradun">
+            <label>Drop Location:</label>
+            <input type="text" id="drop" value="Mussoorie">
+            <label>Date:</label>
+            <input type="date" id="taxiDate" value="2025-12-01">
+            <label>Time:</label>
+            <input type="time" id="taxiTime" value="10:00">
+            <label>Vehicle Type:</label>
+            <input type="text" id="vehicleType" value="SUV">
+            <label>Distance:</label>
+            <input type="text" id="distance" value="35 km">
+            <label>Estimated Price:</label>
+            <input type="number" id="taxiPrice" value="1500">
+        </div>
+        <button onclick="testTaxiBooking()">Book Taxi</button>
+        <button onclick="getTaxiBookings()">Get Taxi Bookings</button>
+        <div id="taxiResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 5: Get All Bookings</h2>
+        <button onclick="getAllBookings()">Get All Bookings</button>
+        <div id="allBookingsResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        function getAuthHeaders() {
+            const token = localStorage.getItem('token');
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            };
+        }
+
+        async function testRegister() {
+            const result = document.getElementById('authResult');
+            try {
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        firstName: document.getElementById('testFirstName').value,
+                        lastName: document.getElementById('testLastName').value,
+                        email: document.getElementById('testEmail').value,
+                        password: document.getElementById('testPassword').value,
+                        phone: '1234567890'
+                    })
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    result.textContent = '✅ Registration successful!\n' + JSON.stringify(data, null, 2);
+                } else {
+                    result.textContent = '❌ Registration failed:\n' + JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function testLogin() {
+            const result = document.getElementById('authResult');
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: document.getElementById('testEmail').value,
+                        password: document.getElementById('testPassword').value
+                    })
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    result.textContent = '✅ Login successful!\n' + JSON.stringify(data, null, 2);
+                } else {
+                    result.textContent = '❌ Login failed:\n' + JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        function checkToken() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            const result = document.getElementById('authResult');
+            result.textContent = `Token: ${token ? '✅ Present' : '❌ Missing'}\nUser: ${user || 'Not logged in'}`;
+        }
+
+        async function testHotelBooking() {
+            const result = document.getElementById('hotelResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/hotel`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify({
+                        hotelName: document.getElementById('hotelName').value,
+                        checkIn: document.getElementById('checkIn').value,
+                        checkOut: document.getElementById('checkOut').value,
+                        rooms: document.getElementById('rooms').value,
+                        guests: document.getElementById('guests').value,
+                        price: document.getElementById('price').value
+                    })
+                });
+                const data = await response.json();
+                result.textContent = response.ok ? 
+                    '✅ Hotel booked!\n' + JSON.stringify(data, null, 2) : 
+                    '❌ Booking failed:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function getHotelBookings() {
+            const result = document.getElementById('hotelResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/hotel`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                result.textContent = '📋 Hotel Bookings:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function testRestaurantBooking() {
+            const result = document.getElementById('restaurantResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/restaurant`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify({
+                        restaurantName: document.getElementById('restaurantName').value,
+                        date: document.getElementById('resDate').value,
+                        time: document.getElementById('resTime').value,
+                        guests: document.getElementById('resGuests').value,
+                        cuisine: document.getElementById('cuisine').value
+                    })
+                });
+                const data = await response.json();
+                result.textContent = response.ok ? 
+                    '✅ Restaurant booked!\n' + JSON.stringify(data, null, 2) : 
+                    '❌ Booking failed:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function getRestaurantBookings() {
+            const result = document.getElementById('restaurantResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/restaurant`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                result.textContent = '📋 Restaurant Bookings:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function testTaxiBooking() {
+            const result = document.getElementById('taxiResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/taxi`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify({
+                        pickupLocation: document.getElementById('pickup').value,
+                        dropLocation: document.getElementById('drop').value,
+                        date: document.getElementById('taxiDate').value,
+                        time: document.getElementById('taxiTime').value,
+                        vehicleType: document.getElementById('vehicleType').value,
+                        distance: document.getElementById('distance').value,
+                        estimatedPrice: document.getElementById('taxiPrice').value
+                    })
+                });
+                const data = await response.json();
+                result.textContent = response.ok ? 
+                    '✅ Taxi booked!\n' + JSON.stringify(data, null, 2) : 
+                    '❌ Booking failed:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function getTaxiBookings() {
+            const result = document.getElementById('taxiResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/taxi`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                result.textContent = '📋 Taxi Bookings:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        async function getAllBookings() {
+            const result = document.getElementById('allBookingsResult');
+            try {
+                const response = await fetch(`${API_URL}/bookings/all`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+                const data = await response.json();
+                result.textContent = '📋 All Bookings:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = '❌ Error: ' + error.message;
+            }
+        }
+
+        // Check login status on load
+        window.onload = () => {
+            checkToken();
+        };
+    </script>
+</body>
+</html>

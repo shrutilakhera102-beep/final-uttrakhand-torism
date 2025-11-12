@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Uttarakhand Tourist Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            padding-top: 100px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            color: #1B7A4E;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #1B7A4E;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card.highlight {
+            border-left-color: #FF6B35;
+        }
+
+        .stat-card.danger {
+            border-left-color: #ff6b6b;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1B7A4E;
+        }
+
+        .stat-card.highlight .stat-value {
+            color: #FF6B35;
+        }
+
+        .stat-change {
+            font-size: 0.85rem;
+            color: #2e7d32;
+            margin-top: 5px;
+        }
+
+        .dashboard-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1B7A4E;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upcoming-booking {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #1B7A4E;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .booking-info h4 {
+            color: #1B7A4E;
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .booking-info p {
+            color: #999;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .booking-date {
+            color: #FF6B35;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .action-button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1B7A4E 0%, #2BA567 100%);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(27, 122, 78, 0.3);
+        }
+
+        .action-button.secondary {
+            background: #f0f0f0;
+            color: #1B7A4E;
+            border: 2px solid #1B7A4E;
+        }
+
+        .action-button.secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #efefef 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .expense-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .expense-item {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .expense-label {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .expense-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1B7A4E;
+        }
+
+        .expense-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .expense-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1B7A4E 0%, #2BA567 100%);
+            border-radius: 3px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .dashboard-row {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .expense-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="districts.html">Districts</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p style="color: #999; margin: 5px 0;">Welcome back, <span id="userName">User</span>!</p>
+            </div>
+            <div style="color: #999; font-size: 0.9rem;">
+                Last updated: <span id="lastUpdated">Just now</span>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar-check" style="color: #1B7A4E;"></i></div>
+                <div class="stat-label">Total Bookings</div>
+                <div class="stat-value" id="totalBookings">0</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> This month</div>
+            </div>
+
+            <div class="stat-card highlight">
+                <div class="stat-icon"><i class="fas fa-dollar-sign" style="color: #FF6B35;"></i></div>
+                <div class="stat-label">Total Spent</div>
+                <div class="stat-value" id="totalSpent">₹0</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> +15% from last month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bed" style="color: #1B7A4E;"></i></div>
+                <div class="stat-label">Hotels Booked</div>
+                <div class="stat-value" id="hotelCount">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-taxi" style="color: #1B7A4E;"></i></div>
+                <div class="stat-label">Taxi Rides</div>
+                <div class="stat-value" id="taxiCount">0</div>
+            </div>
+        </div>
+
+        <!-- Main Content Row -->
+        <div class="dashboard-row">
+            <!-- Upcoming Bookings -->
+            <div class="dashboard-card">
+                <div class="card-title">
+                    <i class="fas fa-clock"></i> Upcoming Bookings
+                </div>
+                <div id="upcomingBookings">
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>No upcoming bookings</p>
+                        <p style="font-size: 0.9rem;">Start planning your next trip!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card">
+                <div class="card-title">
+                    <i class="fas fa-lightning-bolt"></i> Quick Actions
+                </div>
+                <div class="quick-actions">
+                    <a href="hotels.html" class="action-button">
+                        <i class="fas fa-hotel"></i> Book Hotel
+                    </a>
+                    <a href="restaurants.html" class="action-button secondary">
+                        <i class="fas fa-utensils"></i> Dine Out
+                    </a>
+                    <a href="taxi.html" class="action-button secondary">
+                        <i class="fas fa-taxi"></i> Book Taxi
+                    </a>
+                    <a href="mybookings.html" class="action-button secondary">
+                        <i class="fas fa-list"></i> My Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expense Breakdown Row -->
+        <div class="dashboard-row">
+            <div class="dashboard-card">
+                <div class="card-title">
+                    <i class="fas fa-chart-pie"></i> Expense Breakdown
+                </div>
+                <div class="expense-breakdown" id="expenseBreakdown">
+                    <div class="expense-item">
+                        <div class="expense-label">Hotels</div>
+                        <div class="expense-value" id="hotelExpense">₹0</div>
+                        <div class="expense-bar">
+                            <div class="expense-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="expense-item">
+                        <div class="expense-label">Taxi/Transport</div>
+                        <div class="expense-value" id="taxiExpense">₹0</div>
+                        <div class="expense-bar">
+                            <div class="expense-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Recent Activity
+                </div>
+                <div id="recentActivity">
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <p>No recent activity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Your ultimate guide to exploring the beautiful state of Uttarakhand with amazing tours and bookings.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="districts.html">Districts</a></li>
+                    <li><a href="hotels.html">Hotels</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@uttarakhandguide.com</p>
+                <p>Phone: +91 9876543210</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Uttarakhand Tourist Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            protectPage();
+            initializeUserMenu();
+            loadDashboardData();
+        });
+
+        async function loadDashboardData() {
+            const user = getCurrentUser();
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('userName').textContent = user.firstName;
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
+            // Load bookings
+            const hotels = await getHotelBookings();
+            const restaurants = await getRestaurantBookings();
+            const taxis = await getTaxiBookings();
+
+            // Update stats
+            const totalBookings = hotels.length + restaurants.length + taxis.length;
+            document.getElementById('totalBookings').textContent = totalBookings;
+            document.getElementById('hotelCount').textContent = hotels.length;
+            document.getElementById('taxiCount').textContent = taxis.length;
+
+            // Calculate expenses
+            let hotelTotal = 0;
+            let taxiTotal = 0;
+
+            hotels.forEach(h => hotelTotal += parseFloat(h.price) || 0);
+            taxis.forEach(t => taxiTotal += parseFloat(t.estimatedPrice) || 0);
+
+            const totalSpent = hotelTotal + taxiTotal;
+            document.getElementById('totalSpent').textContent = '₹' + totalSpent.toLocaleString('en-IN');
+            document.getElementById('hotelExpense').textContent = '₹' + hotelTotal.toLocaleString('en-IN');
+            document.getElementById('taxiExpense').textContent = '₹' + taxiTotal.toLocaleString('en-IN');
+
+            // Display upcoming bookings
+            displayUpcomingBookings(hotels, restaurants, taxis);
+            displayRecentActivity(hotels, restaurants, taxis);
+        }
+
+        function displayUpcomingBookings(hotels, restaurants, taxis) {
+            const container = document.getElementById('upcomingBookings');
+            const allBookings = [
+                ...hotels.map(h => ({
+                    name: h.hotelName,
+                    type: 'Hotel',
+                    date: new Date(h.checkIn),
+                    icon: 'fas fa-bed'
+                })),
+                ...taxis.map(t => ({
+                    name: `${t.pickupLocation} → ${t.dropLocation}`,
+                    type: 'Taxi',
+                    date: new Date(t.date),
+                    icon: 'fas fa-taxi'
+                })),
+                ...restaurants.map(r => ({
+                    name: r.restaurantName,
+                    type: 'Restaurant',
+                    date: new Date(r.date),
+                    icon: 'fas fa-utensils'
+                }))
+            ].sort((a, b) => a.date - b.date);
+
+            if (allBookings.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>No upcoming bookings</p>
+                        <p style="font-size: 0.9rem;">Start planning your next trip!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const html = allBookings.slice(0, 5).map(booking => `
+                <div class="upcoming-booking">
+                    <div class="booking-info">
+                        <h4><i class="${booking.icon}"></i> ${booking.name}</h4>
+                        <p>${booking.type}</p>
+                    </div>
+                    <div class="booking-date">${booking.date.toLocaleDateString()}</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        function displayRecentActivity(hotels, restaurants, taxis) {
+            const container = document.getElementById('recentActivity');
+            const allActivities = [
+                ...hotels.map(h => ({
+                    action: `Booked ${h.hotelName}`,
+                    date: new Date(h.bookingDate),
+                    icon: 'fas fa-check-circle'
+                })),
+                ...taxis.map(t => ({
+                    action: `Booked taxi to ${t.dropLocation}`,
+                    date: new Date(t.bookingDate),
+                    icon: 'fas fa-check-circle'
+                })),
+                ...restaurants.map(r => ({
+                    action: `Reserved at ${r.restaurantName}`,
+                    date: new Date(r.bookingDate),
+                    icon: 'fas fa-check-circle'
+                }))
+            ].sort((a, b) => b.date - a.date);
+
+            if (allActivities.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <p>No recent activity</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const html = allActivities.slice(0, 5).map(activity => `
+                <div style="padding: 10px 0; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <i class="${activity.icon}" style="color: #2e7d32; margin-right: 10px;"></i>
+                        <span style="color: #333;">${activity.action}</span>
+                    </div>
+                    <span style="color: #999; font-size: 0.85rem;">${activity.date.toLocaleDateString()}</span>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

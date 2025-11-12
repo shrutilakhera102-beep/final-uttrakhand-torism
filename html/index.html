@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uttarakhand Tourist Guide - Home</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Tourist Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="districts.html">Districts</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Discover the Beauty of Uttarakhand</h2>
+            <p>Explore the majestic Himalayas, sacred rivers, and serene landscapes of Devbhoomi - The Land of Gods</p>
+            <a href="districts.html" class="btn">Explore Destinations</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Welcome to Uttarakhand</h2>
+                    <p>Uttarakhand, often referred to as the "Land of the Gods," is a state in northern India blessed with breathtaking natural beauty. From the snow-capped peaks of the Himalayas to the lush green valleys and sacred rivers, Uttarakhand offers a diverse range of experiences for every traveler.</p>
+                    <p>Home to Char Dham pilgrimage sites, numerous hill stations, wildlife sanctuaries, and adventure sports destinations, Uttarakhand attracts millions of tourists each year seeking spiritual solace, natural beauty, and thrilling adventures.</p>
+                    <a href="districts.html" class="btn">Discover More</a>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Uttarakhand Landscape">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Destinations</h2>
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Nainital">
+                        <div class="slide-content">
+                            <h3>Nainital - The Lake District</h3>
+                            <p>Famous for its beautiful lakes and panoramic views of the Himalayas</p>
+                            <a href="districts.html#nainital" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800&h=600&fit=crop" alt="Rishikesh">
+                        <div class="slide-content">
+                            <h3>Rishikesh - Yoga Capital</h3>
+                            <p>Spiritual hub on the banks of the Ganges, known for yoga and adventure sports</p>
+                            <a href="districts.html#rishikesh" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Valley of Flowers">
+                        <div class="slide-content">
+                            <h3>Valley of Flowers</h3>
+                            <p>UNESCO World Heritage Site known for its endemic alpine flowers</p>
+                            <a href="districts.html#chamoli" class="btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destination Cards -->
+    <section class="featured-cards">
+        <div class="container">
+            <h2 class="section-title">Popular Destinations</h2>
+            <div class="destination-grid">
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&h=300&fit=crop" alt="Rishikesh">
+                    <div class="card-content">
+                        <h3>Rishikesh</h3>
+                        <p>The Yoga Capital of the World, located on the banks of the holy Ganges River</p>
+                        <a href="districts.html#rishikesh" class="btn-small">Learn More</a>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Nainital">
+                    <div class="card-content">
+                        <h3>Nainital</h3>
+                        <p>The Lake District of India with stunning views and water sports activities</p>
+                        <a href="districts.html#nainital" class="btn-small">Learn More</a>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Valley of Flowers">
+                    <div class="card-content">
+                        <h3>Valley of Flowers</h3>
+                        <p>UNESCO World Heritage Site with breathtaking alpine flowers and meadows</p>
+                        <a href="districts.html#chamoli" class="btn-small">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info Sections -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-hotel"></i>
+                    <h3>Hotels & Stays</h3>
+                    <p>Find the perfect accommodation for your budget and preferences</p>
+                    <a href="hotels.html" class="btn">Browse Hotels</a>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Local Cuisine</h3>
+                    <p>Discover authentic Uttarakhand dishes and popular restaurants</p>
+                    <a href="restaurants.html" class="btn">Explore Food</a>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-taxi"></i>
+                    <h3>Transport</h3>
+                    <p>Book taxis, rental cars, and find transport information</p>
+                    <a href="taxi.html" class="btn">Get Transport</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Uttarakhand Tourist Guide</h3>
+                    <p>Your comprehensive guide to exploring the beautiful state of Uttarakhand. Discover hidden gems, plan your itinerary, and create unforgettable memories.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="districts.html">Districts</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="restaurants.html">Restaurants</a></li>
+                        <li><a href="taxi.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="districts.html#nainital">Nainital</a></li>
+                        <li><a href="districts.html#mussoorie">Mussoorie</a></li>
+                        <li><a href="districts.html#rishikesh">Rishikesh</a></li>
+                        <li><a href="districts.html#haridwar">Haridwar</a></li>
+                        <li><a href="districts.html#valley-of-flowers">Valley of Flowers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for travel tips and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Uttarakhand Tourist Guide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/carosouel.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Initialize user menu
+        function initializeUserMenu() {
+            const authMenuContainer = document.getElementById('authMenuContainer');
+            if (!authMenuContainer) return;
+
+            const user = getCurrentUser();
+            const isLoggedIn = checkUserLogin();
+
+            if (isLoggedIn && user) {
+                // Show logged-in user menu
+                authMenuContainer.innerHTML = `
+                    <div class="user-menu">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span>${user.firstName}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" onclick="viewProfile(); return false;">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" onclick="viewBookings(); return false;">
+                                <i class="fas fa-calendar-check"></i> My Bookings
+                            </a>
+                            <a href="#" onclick="viewFavorites(); return false;">
+                                <i class="fas fa-heart"></i> Favorites
+                            </a>
+                            <hr>
+                            <a href="#" class="logout-btn" onclick="handleLogoutClick(event)">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Add click handler for dropdown
+                const profileBtn = document.getElementById('userProfileBtn');
+                const dropdown = document.getElementById('userDropdown');
+                
+                if (profileBtn) {
+                    profileBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdown.classList.toggle('show');
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.remove('show');
+                        }
+                    });
+                }
+            } else {
+                // Show login/register links
+                authMenuContainer.innerHTML = `
+                    <div class="auth-menu">
+                        <a href="login.html" class="login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="register-btn">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle logout
+        function handleLogoutClick(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                clearUserSession();
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // View profile (placeholder)
+        function viewProfile() {
+            alert('Profile page coming soon!');
+        }
+
+        // View bookings (placeholder)
+        function viewBookings() {
+            alert('My Bookings page coming soon!');
+        }
+
+        // View favorites (placeholder)
+        function viewFavorites() {
+            alert('Favorites page coming soon!');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeUserMenu();
+        });
+    </script>
+</html>

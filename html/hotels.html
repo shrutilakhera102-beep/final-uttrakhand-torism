@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels & Accommodation - Uttarakhand Tourist Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Tourist Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="districts.html">Districts</a></li>
+                <li><a href="hotels.html" class="active">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Hotels & Accommodation</h1>
+            <p>Find the perfect stay for your Uttarakhand trip - from luxury resorts to budget hotels</p>
+        </div>
+    </section>
+
+    <!-- Hotels Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h3>Find Your Perfect Stay</h3>
+                <form class="search-form">
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <select id="destination" name="destination">
+                            <option value="">Select District</option>
+                            <option value="nainital">Nainital</option>
+                            <option value="dehradun">Dehradun</option>
+                            <option value="rishikesh">Rishikesh</option>
+                            <option value="haridwar">Haridwar</option>
+                            <option value="mussoorie">Mussoorie</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin">Check-in Date</label>
+                        <input type="date" id="checkin" name="checkin">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Check-out Date</label>
+                        <input type="date" id="checkout" name="checkout">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Guests</label>
+                        <select id="guests" name="guests">
+                            <option value="1">1 Guest</option>
+                            <option value="2" selected>2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5+">5+ Guests</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Search Hotels</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section class="services" id="hotels">
+        <div class="container">
+            <h2 class="section-title">Types of Accommodation</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Luxury Resorts</h3>
+                    <p>Experience luxury amidst nature with premium amenities and breathtaking views.</p>
+                    <p><strong>Price Range:</strong> ₹8,000 - ₹25,000 per night</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>4.8/5</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">View Options</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Budget Hotels</h3>
+                    <p>Comfortable and affordable accommodations for budget-conscious travelers.</p>
+                    <p><strong>Price Range:</strong> ₹1,500 - ₹5,000 per night</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.2/5</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">View Options</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-campground"></i>
+                    </div>
+                    <h3>Eco Resorts & Camps</h3>
+                    <p>Stay close to nature with eco-friendly resorts and camping experiences.</p>
+                    <p><strong>Price Range:</strong> ₹2,000 - ₹10,000 per night</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>4.7/5</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">View Options</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Hotels -->
+    <section class="featured-hotels">
+        <div class="container">
+            <h2 class="section-title">Featured Hotels</h2>
+            <div class="hotels-grid">
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="The Naini Retreat">
+                        <div class="price-tag">₹12,000/night</div>
+                        <button class="favorite-btn" onclick="addToFavorites(1, 'The Naini Retreat', 'hotel', 12000, 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', 'Luxury heritage hotel with stunning views of Naini Lake'); return false;">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>The Naini Retreat</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Nainital</p>
+                        <p class="description">Luxury heritage hotel with stunning views of Naini Lake</p>
+                        <div class="amenities">
+                            <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span><i class="fas fa-swimming-pool"></i> Pool</span>
+                            <span><i class="fas fa-utensils"></i> Restaurant</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5/5</span>
+                        </div>
+                        <a href="#" class="btn" onclick="openHotelBooking('The Naini Retreat', 12000); return false;">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Ananda in the Himalayas">
+                        <div class="price-tag">₹22,000/night</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Ananda in the Himalayas</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Rishikesh</p>
+                        <p class="description">World-renowned luxury spa resort overlooking the Ganges</p>
+                        <div class="amenities">
+                            <span><i class="fas fa-spa"></i> Spa</span>
+                            <span><i class="fas fa-dumbbell"></i> Gym</span>
+                            <span><i class="fas fa-utensils"></i> Restaurant</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9/5</span>
+                        </div>
+                        <a href="#" class="btn" onclick="openHotelBooking('Ananda in the Himalayas', 22000); return false;">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="JW Marriott Mussoorie">
+                        <div class="price-tag">₹18,000/night</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>JW Marriott Mussoorie</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Mussoorie</p>
+                        <p class="description">Luxury hotel with panoramic views of the Himalayas</p>
+                        <div class="amenities">
+                            <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span><i class="fas fa-swimming-pool"></i> Pool</span>
+                            <span><i class="fas fa-utensils"></i> Restaurant</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8/5</span>
+                        </div>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Uttarakhand Tourist Guide</h3>
+                    <p>Your comprehensive guide to exploring the beautiful state of Uttarakhand.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="districts.html">Districts</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="restaurants.html">Restaurants</a></li>
+                        <li><a href="taxi.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="districts.html#nainital">Nainital</a></li>
+                        <li><a href="districts.html#mussoorie">Mussoorie</a></li>
+                        <li><a href="districts.html#rishikesh">Rishikesh</a></li>
+                        <li><a href="districts.html#haridwar">Haridwar</a></li>
+                        <li><a href="districts.html#valley-of-flowers">Valley of Flowers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Need Help?</h3>
+                    <p>Contact us for any travel queries or assistance.</p>
+                    <a href="contact.html" class="btn">Contact Us</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Uttarakhand Tourist Guide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Hotel Booking Modal -->
+    <div id="hotelBookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:40px; border-radius:10px; max-width:500px; width:90%; max-height:90vh; overflow-y:auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2>Book Hotel</h2>
+                <button onclick="closeHotelBooking()" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            </div>
+            <form id="hotelBookingForm" onsubmit="submitHotelBooking(event)">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Hotel Name</label>
+                    <input type="text" id="hotelName" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Check-in Date</label>
+                    <input type="date" id="hotelCheckIn" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Check-out Date</label>
+                    <input type="date" id="hotelCheckOut" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Number of Rooms</label>
+                    <input type="number" id="hotelRooms" value="1" min="1" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Number of Guests</label>
+                    <input type="number" id="hotelGuests" value="1" min="1" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Price per Night (₹)</label>
+                    <input type="number" id="hotelPrice" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <button type="submit" class="btn" style="width:100%; padding:12px; cursor:pointer;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/booking-enhanced.js"></script>
+    <script>
+        // Initialize user menu
+        function initializeUserMenu() {
+            const authMenuContainer = document.getElementById('authMenuContainer');
+            if (!authMenuContainer) return;
+            const user = getCurrentUser();
+            const isLoggedIn = checkUserLogin();
+            if (isLoggedIn && user) {
+                authMenuContainer.innerHTML = `
+                    <div class="user-menu">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span>${user.firstName}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" onclick="viewProfile(); return false;"><i class="fas fa-user"></i> My Profile</a>
+                            <a href="#" onclick="viewBookings(); return false;"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                            <a href="#" onclick="viewFavorites(); return false;"><i class="fas fa-heart"></i> Favorites</a>
+                            <hr>
+                            <a href="#" class="logout-btn" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                `;
+                const profileBtn = document.getElementById('userProfileBtn');
+                const dropdown = document.getElementById('userDropdown');
+                if (profileBtn) {
+                    profileBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdown.classList.toggle('show');
+                    });
+                    document.addEventListener('click', (e) => {
+                        if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.remove('show');
+                        }
+                    });
+                }
+            } else {
+                authMenuContainer.innerHTML = `
+                    <div class="auth-menu">
+                        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="register-btn"><i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                `;
+            }
+        }
+        function handleLogoutClick(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                clearUserSession();
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+        function viewProfile() { alert('Profile page coming soon!'); }
+        function viewBookings() { alert('My Bookings page coming soon!'); }
+        function viewFavorites() { alert('Favorites page coming soon!'); }
+        document.addEventListener('DOMContentLoaded', () => { initializeUserMenu(); });
+    </script>
+    <script>
+        function openHotelBooking(hotelName, price) {
+            if (!checkUserLogin()) {
+                alert('Please login to book a hotel');
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('hotelName').value = hotelName;
+            document.getElementById('hotelPrice').value = price;
+            document.getElementById('hotelBookingModal').style.display = 'flex';
+        }
+
+        function closeHotelBooking() {
+            document.getElementById('hotelBookingModal').style.display = 'none';
+        }
+
+        async function submitHotelBooking(event) {
+            event.preventDefault();
+            
+            const hotelData = {
+                hotelName: document.getElementById('hotelName').value,
+                checkIn: document.getElementById('hotelCheckIn').value,
+                checkOut: document.getElementById('hotelCheckOut').value,
+                rooms: document.getElementById('hotelRooms').value,
+                guests: document.getElementById('hotelGuests').value,
+                price: document.getElementById('hotelPrice').value
+            };
+
+            const success = await bookHotelEnhanced(hotelData);
+            if (success) {
+                closeHotelBooking();
+                document.getElementById('hotelBookingForm').reset();
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('hotelBookingModal').addEventListener('click', (e) => {
+            if (e.target.id === 'hotelBookingModal') {
+                closeHotelBooking();
+            }
+        });
+
+        // Add to favorites function
+        function addToFavorites(id, name, type, price, image, description) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            
+            // Check if already exists
+            if (favorites.some(f => f.id === id)) {
+                alert('Already in favorites!');
+                return;
+            }
+            
+            favorites.push({ id, name, type, price, image, description });
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            alert('Added to favorites! ❤️');
+        }
+    </script>
+</body>
+</html>

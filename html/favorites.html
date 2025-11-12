@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - Uttarakhand Tourist Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .favorites-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            padding-top: 100px;
+        }
+
+        .favorites-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .favorites-header h1 {
+            color: #1B7A4E;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .favorites-header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .filter-tab:hover {
+            border-color: #1B7A4E;
+            color: #1B7A4E;
+        }
+
+        .filter-tab.active {
+            background: #1B7A4E;
+            color: white;
+            border-color: #1B7A4E;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .favorite-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .favorite-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .favorite-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF6B35;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .favorite-content {
+            padding: 20px;
+        }
+
+        .favorite-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1B7A4E;
+            margin-bottom: 10px;
+        }
+
+        .favorite-type {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .favorite-rating {
+            color: #FFD700;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .favorite-rating i {
+            margin-right: 3px;
+        }
+
+        .favorite-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .favorite-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1B7A4E;
+            margin-bottom: 15px;
+        }
+
+        .favorite-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-book {
+            background: linear-gradient(135deg, #1B7A4E 0%, #2BA567 100%);
+            color: white;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(27, 122, 78, 0.3);
+        }
+
+        .btn-remove {
+            background: #fff0f0;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+        }
+
+        .btn-remove:hover {
+            background: #FFE5E0;
+        }
+
+        .favorites-empty {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+        }
+
+        .favorites-empty i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .favorites-empty h3 {
+            color: #999;
+            margin: 15px 0;
+        }
+
+        .favorites-empty p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .favorites-empty .btn {
+            display: inline-block;
+        }
+
+        .favorites-stats {
+            background: linear-gradient(135deg, #1B7A4E 0%, #2BA567 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .favorites-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .favorites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .favorite-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="districts.html">Districts</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Favorites Container -->
+    <div class="favorites-container">
+        <div class="favorites-header">
+            <h1>My Favorites</h1>
+            <p>Your curated collection of favorite destinations, hotels, and restaurants</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="favorites-stats">
+            <div class="stat">
+                <div class="stat-number" id="totalFavorites">0</div>
+                <div class="stat-label">Total Favorites</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="hotelFavorites">0</div>
+                <div class="stat-label">Hotels</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="restaurantFavorites">0</div>
+                <div class="stat-label">Restaurants</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="destinationFavorites">0</div>
+                <div class="stat-label">Destinations</div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterFavorites('all')">
+                <i class="fas fa-heart"></i> All
+            </button>
+            <button class="filter-tab" onclick="filterFavorites('hotels')">
+                <i class="fas fa-hotel"></i> Hotels
+            </button>
+            <button class="filter-tab" onclick="filterFavorites('restaurants')">
+                <i class="fas fa-utensils"></i> Restaurants
+            </button>
+            <button class="filter-tab" onclick="filterFavorites('destinations')">
+                <i class="fas fa-map-marker-alt"></i> Destinations
+            </button>
+        </div>
+
+        <!-- Favorites Grid -->
+        <div class="favorites-grid" id="favoritesGrid">
+            <div class="favorites-empty">
+                <i class="fas fa-heart"></i>
+                <h3>No Favorites Yet</h3>
+                <p>Save your favorite hotels, restaurants, and destinations to your wishlist!</p>
+                <a href="hotels.html" class="btn">Explore Hotels</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Your ultimate guide to exploring the beautiful state of Uttarakhand with amazing tours and bookings.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="districts.html">Districts</a></li>
+                    <li><a href="hotels.html">Hotels</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@uttarakhandguide.com</p>
+                <p>Phone: +91 9876543210</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Uttarakhand Tourist Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Sample favorites data - In real app, this would come from backend
+        const favoritesData = [
+            {
+                id: 1,
+                name: 'The Naini Retreat',
+                type: 'hotel',
+                rating: 4.8,
+                price: 12000,
+                image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=300&fit=crop',
+                description: 'Luxury hotel with stunning lake views in Nainital'
+            },
+            {
+                id: 2,
+                name: 'Local Himalayan Restaurant',
+                type: 'restaurant',
+                rating: 4.5,
+                price: 'Avg ₹800 per person',
+                image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
+                description: 'Authentic Himalayan cuisine with local flavors'
+            },
+            {
+                id: 3,
+                name: 'Nainital Lake View',
+                type: 'destination',
+                rating: 4.9,
+                price: 'Free',
+                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+                description: 'Beautiful lake with panoramic mountain views'
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            protectPage();
+            initializeUserMenu();
+            loadFavorites();
+        });
+
+        function loadFavorites() {
+            // In production, this would fetch from backend
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            
+            if (favorites.length === 0) {
+                displayEmpty();
+                updateStats([]);
+                return;
+            }
+
+            displayFavorites(favorites);
+            updateStats(favorites);
+        }
+
+        function displayEmpty() {
+            document.getElementById('favoritesGrid').innerHTML = `
+                <div class="favorites-empty">
+                    <i class="fas fa-heart"></i>
+                    <h3>No Favorites Yet</h3>
+                    <p>Save your favorite hotels, restaurants, and destinations to your wishlist!</p>
+                    <a href="hotels.html" class="btn">Explore Hotels</a>
+                </div>
+            `;
+        }
+
+        function displayFavorites(favorites) {
+            let filtered = favorites;
+            
+            if (currentFilter !== 'all') {
+                filtered = favorites.filter(f => f.type === currentFilter);
+            }
+
+            if (filtered.length === 0) {
+                document.getElementById('favoritesGrid').innerHTML = `
+                    <div class="favorites-empty">
+                        <i class="fas fa-search"></i>
+                        <h3>No ${currentFilter} in favorites</h3>
+                        <p>Try exploring other categories or browsing our listings</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const html = filtered.map(fav => `
+                <div class="favorite-card">
+                    <div style="position: relative;">
+                        <img src="${fav.image}" alt="${fav.name}" class="favorite-image">
+                        <div class="favorite-badge">
+                            <i class="fas fa-heart" style="margin-right: 5px;"></i>
+                            ${fav.type.charAt(0).toUpperCase() + fav.type.slice(1)}
+                        </div>
+                    </div>
+                    <div class="favorite-content">
+                        <div class="favorite-title">${fav.name}</div>
+                        <div class="favorite-type">
+                            <i class="fas fa-${fav.type === 'hotel' ? 'hotel' : fav.type === 'restaurant' ? 'utensils' : 'map-marker-alt'}"></i>
+                            ${fav.type.charAt(0).toUpperCase() + fav.type.slice(1)}
+                        </div>
+                        <div class="favorite-rating">
+                            ${'<i class="fas fa-star"></i>'.repeat(Math.floor(fav.rating))} 
+                            ${fav.rating}
+                        </div>
+                        <div class="favorite-description">${fav.description}</div>
+                        <div class="favorite-price">${fav.price}</div>
+                        <div class="favorite-actions">
+                            <button class="action-btn btn-book" onclick="bookNow('${fav.type}')">
+                                <i class="fas fa-calendar"></i> Book Now
+                            </button>
+                            <button class="action-btn btn-remove" onclick="removeFavorite(${fav.id})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('favoritesGrid').innerHTML = html;
+        }
+
+        function filterFavorites(type) {
+            currentFilter = type;
+            
+            // Update tab styles
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.closest('.filter-tab').classList.add('active');
+
+            loadFavorites();
+        }
+
+        function removeFavorite(id) {
+            if (confirm('Remove this from favorites?')) {
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                favorites = favorites.filter(f => f.id !== id);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                loadFavorites();
+                alert('Removed from favorites!');
+            }
+        }
+
+        function bookNow(type) {
+            if (type === 'hotel') window.location.href = 'hotels.html';
+            else if (type === 'restaurant') window.location.href = 'restaurants.html';
+            else window.location.href = 'districts.html';
+        }
+
+        function updateStats(favorites) {
+            document.getElementById('totalFavorites').textContent = favorites.length;
+            document.getElementById('hotelFavorites').textContent = favorites.filter(f => f.type === 'hotel').length;
+            document.getElementById('restaurantFavorites').textContent = favorites.filter(f => f.type === 'restaurant').length;
+            document.getElementById('destinationFavorites').textContent = favorites.filter(f => f.type === 'destination').length;
+        }
+    </script>
+</body>
+</html>

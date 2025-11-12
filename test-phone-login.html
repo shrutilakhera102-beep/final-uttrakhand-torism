@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Phone Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1B7A4E; }
+        button {
+            background: #1B7A4E;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover { background: #2BA567; }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-box">
+        <h1>🧪 Phone Login Test</h1>
+        
+        <div id="status"></div>
+        
+        <h3>Step 1: Check Backend Server</h3>
+        <button onclick="testBackend()">Test Backend Connection</button>
+        
+        <h3>Step 2: Test Send OTP</h3>
+        <input type="tel" id="testPhone" placeholder="9876543210" value="9876543210" style="padding: 10px; width: 200px; margin-right: 10px;">
+        <button onclick="testSendOTP()">Send OTP</button>
+        
+        <h3>Step 3: Test Verify OTP</h3>
+        <input type="text" id="testOTP" placeholder="123456" style="padding: 10px; width: 200px; margin-right: 10px;">
+        <button onclick="testVerifyOTP()">Verify OTP</button>
+        
+        <h3>Step 4: Open Phone Login Page</h3>
+        <button onclick="window.open('html/phone-login.html', '_blank')">Open Phone Login Page</button>
+        
+        <h3>Console Output:</h3>
+        <pre id="console"></pre>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        let currentPhone = '';
+        
+        function log(message, type = 'info') {
+            const consoleEl = document.getElementById('console');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleEl.textContent += `[${timestamp}] ${message}\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+            console.log(message);
+        }
+        
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${type}`;
+            statusEl.textContent = message;
+        }
+        
+        async function testBackend() {
+            log('Testing backend connection...');
+            showStatus('Testing backend...', 'info');
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (response.status === 401) {
+                    log('✅ Backend server is running!');
+                    showStatus('✅ Backend server is running on port 5000!', 'success');
+                } else {
+                    log('✅ Backend server responded');
+                    showStatus('✅ Backend server is responding!', 'success');
+                }
+            } catch (error) {
+                log('❌ Backend error: ' + error.message);
+                showStatus('❌ Backend server is NOT running! Start it with: node server.js', 'error');
+            }
+        }
+        
+        async function testSendOTP() {
+            const phone = document.getElementById('testPhone').value.trim();
+            
+            if (phone.length !== 10) {
+                showStatus('❌ Please enter a valid 10-digit phone number', 'error');
+                return;
+            }
+            
+            currentPhone = phone;
+            log(`Sending OTP to ${phone}...`);
+            showStatus('Sending OTP...', 'info');
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/send-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone })
+                });
+                
+                const data = await response.json();
+                log('Response: ' + JSON.stringify(data, null, 2));
+                
+                if (response.ok) {
+                    log(`✅ OTP sent! OTP: ${data.otp}`);
+                    showStatus(`✅ OTP sent successfully! OTP: ${data.otp}`, 'success');
+                    document.getElementById('testOTP').value = data.otp;
+                } else {
+                    log('❌ Failed: ' + data.message);
+                    showStatus('❌ ' + data.message, 'error');
+                }
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+                showStatus('❌ Network error: ' + error.message, 'error');
+            }
+        }
+        
+        async function testVerifyOTP() {
+            const otp = document.getElementById('testOTP').value.trim();
+            
+            if (!currentPhone) {
+                showStatus('❌ Please send OTP first!', 'error');
+                return;
+            }
+            
+            if (otp.length !== 6) {
+                showStatus('❌ Please enter a valid 6-digit OTP', 'error');
+                return;
+            }
+            
+            log(`Verifying OTP ${otp} for ${currentPhone}...`);
+            showStatus('Verifying OTP...', 'info');
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/verify-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: currentPhone, otp })
+                });
+                
+                const data = await response.json();
+                log('Response: ' + JSON.stringify(data, null, 2));
+                
+                if (response.ok) {
+                    log('✅ OTP verified! Login successful!');
+                    log('Token: ' + data.token);
+                    showStatus('✅ OTP verified! Login successful!', 'success');
+                } else {
+                    log('❌ Failed: ' + data.message);
+                    showStatus('❌ ' + data.message, 'error');
+                }
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+                showStatus('❌ Network error: ' + error.message, 'error');
+            }
+        }
+        
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            log('🧪 Phone Login Test Page Loaded');
+            log('Backend URL: ' + API_URL);
+            setTimeout(testBackend, 500);
+        });
+    </script>
+</body>
+</html>

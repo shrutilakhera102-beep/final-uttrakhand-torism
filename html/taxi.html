@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi & Transport Services - Uttarakhand Tourist Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <h1>Uttarakhand Tourist Guide</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="districts.html">Districts</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="taxi.html" class="active">Transport</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="authMenuContainer"></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Taxi & Transport Services</h1>
+            <p>Find reliable transport options for your Uttarakhand journey - from local taxis to rental cars</p>
+        </div>
+    </section>
+
+    <!-- Transport Booking Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h3>Book Your Transport</h3>
+                <form class="search-form">
+                    <div class="form-group">
+                        <label for="pickup">Pickup Location</label>
+                        <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location">
+                    </div>
+                    <div class="form-group">
+                        <label for="dropoff">Drop-off Location</label>
+                        <input type="text" id="dropoff" name="dropoff" placeholder="Enter destination">
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup-date">Pickup Date</label>
+                        <input type="date" id="pickup-date" name="pickup-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-type">Vehicle Type</label>
+                        <select id="vehicle-type" name="vehicle-type">
+                            <option value="">Select Vehicle</option>
+                            <option value="hatchback">Hatchback (4 seater)</option>
+                            <option value="sedan">Sedan (4 seater)</option>
+                            <option value="suv">SUV (6-7 seater)</option>
+                            <option value="tempo-traveller">Tempo Traveller (12 seater)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Check Availability</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Services Section -->
+    <section class="services" id="transport">
+        <div class="container">
+            <h2 class="section-title">Transport Options</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-taxi"></i>
+                    </div>
+                    <h3>Local Taxi Services</h3>
+                    <p>Reliable taxi services for local sightseeing and inter-city travel.</p>
+                    <p><strong>Rates:</strong> ₹12-₹18 per km (varies by vehicle type)</p>
+                    <div class="features">
+                        <span><i class="fas fa-check"></i> 24/7 Service</span>
+                        <span><i class="fas fa-check"></i> Local Drivers</span>
+                        <span><i class="fas fa-check"></i AC Vehicles</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">Book Now</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Car Rentals</h3>
+                    <p>Self-drive and chauffeur-driven car rental options for flexible travel.</p>
+                    <p><strong>Rates:</strong> ₹1,500 - ₹4,000 per day</p>
+                    <div class="features">
+                        <span><i class="fas fa-check"></i> Self-Drive Options</span>
+                        <span><i class="fas fa-check"></i> Chauffeur Service</span>
+                        <span><i class="fas fa-check"></i> Multiple Car Types</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">Rent a Car</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>Bus Services</h3>
+                    <p>Government and private bus services connecting all major destinations.</p>
+                    <p><strong>Rates:</strong> ₹200 - ₹1,000 depending on distance</p>
+                    <div class="features">
+                        <span><i class="fas fa-check"></i> Regular Services</span>
+                        <span><i class="fas fa-check"></i> Luxury Buses Available</span>
+                        <span><i class="fas fa-check"></i> Online Booking</span>
+                    </div>
+                    <a href="#" class="btn" style="margin-top: 15px;">Check Schedule</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Routes -->
+    <section class="routes-section">
+        <div class="container">
+            <h2 class="section-title">Popular Transport Routes</h2>
+            <div class="routes-grid">
+                <div class="route-card">
+                    <h3>Dehradun to Mussoorie</h3>
+                    <p class="distance">34 km | 1.5 hours</p>
+                    <div class="route-info">
+                        <p><strong>Taxi Fare:</strong> ₹800 - ₹1,200</p>
+                        <p><strong>Bus Fare:</strong> ₹60 - ₹100</p>
+                        <p><strong>Best Time:</strong> Early morning to avoid traffic</p>
+                    </div>
+                    <a href="#" class="btn">Book This Route</a>
+                </div>
+                
+                <div class="route-card">
+                    <h3>Haridwar to Rishikesh</h3>
+                    <p class="distance">24 km | 45 minutes</p>
+                    <div class="route-info">
+                        <p><strong>Taxi Fare:</strong> ₹500 - ₹800</p>
+                        <p><strong>Bus Fare:</strong> ₹40 - ₹70</p>
+                        <p><strong>Best Time:</strong> Anytime, frequent services</p>
+                    </div>
+                    <a href="#" class="btn">Book This Route</a>
+                </div>
+                
+                <div class="route-card">
+                    <h3>Kathgodam to Nainital</h3>
+                    <p class="distance">35 km | 1.5 hours</p>
+                    <div class="route-info">
+                        <p><strong>Taxi Fare:</strong> ₹900 - ₹1,400</p>
+                        <p><strong>Bus Fare:</strong> ₹70 - ₹120</p>
+                        <p><strong>Best Time:</strong> Morning hours</p>
+                    </div>
+                    <a href="#" class="btn">Book This Route</a>
+                </div>
+                
+                <div class="route-card">
+                    <h3>Dehradun to Rishikesh</h3>
+                    <p class="distance">42 km | 1.5 hours</p>
+                    <div class="route-info">
+                        <p><strong>Taxi Fare:</strong> ₹1,000 - ₹1,500</p>
+                        <p><strong>Bus Fare:</strong> ₹80 - ₹130</p>
+                        <p><strong>Best Time:</strong> Avoid peak office hours</p>
+                    </div>
+                    <a href="#" class="btn">Book This Route</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Uttarakhand Tourist Guide</h3>
+                    <p>Your comprehensive guide to exploring the beautiful state of Uttarakhand.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="districts.html">Districts</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="restaurants.html">Restaurants</a></li>
+                        <li><a href="taxi.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="districts.html#nainital">Nainital</a></li>
+                        <li><a href="districts.html#mussoorie">Mussoorie</a></li>
+                        <li><a href="districts.html#rishikesh">Rishikesh</a></li>
+                        <li><a href="districts.html#haridwar">Haridwar</a></li>
+                        <li><a href="districts.html#valley-of-flowers">Valley of Flowers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Transport Partners</h3>
+                    <p>We partner with verified transport providers for your safety and comfort.</p>
+                    <a href="contact.html" class="btn">Become a Partner</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Uttarakhand Tourist Guide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Taxi Booking Modal -->
+    <div id="taxiBookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:40px; border-radius:10px; max-width:500px; width:90%; max-height:90vh; overflow-y:auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2>Book Taxi</h2>
+                <button onclick="closeTaxiBooking()" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            </div>
+            <form id="taxiBookingForm" onsubmit="submitTaxiBooking(event)">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Pickup Location</label>
+                    <input type="text" id="taxiPickup" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Drop Location</label>
+                    <input type="text" id="taxiDrop" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Date</label>
+                    <input type="date" id="taxiDate" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Time</label>
+                    <input type="time" id="taxiTime" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Vehicle Type</label>
+                    <select id="taxiVehicleType" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                        <option value="">Select Vehicle Type</option>
+                        <option value="Sedan">Sedan (₹12/km)</option>
+                        <option value="SUV">SUV (₹15/km)</option>
+                        <option value="Tempo">Tempo Traveller (₹10/km)</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Estimated Distance (km)</label>
+                    <input type="number" id="taxiDistance" placeholder="e.g., 50" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Estimated Price (₹)</label>
+                    <input type="number" id="taxiPrice" placeholder="Auto-calculated" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:5px;">
+                </div>
+                <button type="submit" class="btn" style="width:100%; padding:12px; cursor:pointer;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        function initializeUserMenu() {
+            const authMenuContainer = document.getElementById('authMenuContainer');
+            if (!authMenuContainer) return;
+            const user = getCurrentUser();
+            const isLoggedIn = checkUserLogin();
+            if (isLoggedIn && user) {
+                authMenuContainer.innerHTML = `
+                    <div class="user-menu">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span>${user.firstName}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" onclick="viewProfile(); return false;"><i class="fas fa-user"></i> My Profile</a>
+                            <a href="#" onclick="viewBookings(); return false;"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                            <a href="#" onclick="viewFavorites(); return false;"><i class="fas fa-heart"></i> Favorites</a>
+                            <hr>
+                            <a href="#" class="logout-btn" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                `;
+                const profileBtn = document.getElementById('userProfileBtn');
+                const dropdown = document.getElementById('userDropdown');
+                if (profileBtn) {
+                    profileBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdown.classList.toggle('show');
+                    });
+                    document.addEventListener('click', (e) => {
+                        if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.remove('show');
+                        }
+                    });
+                }
+            } else {
+                authMenuContainer.innerHTML = `
+                    <div class="auth-menu">
+                        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="register-btn"><i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                `;
+            }
+        }
+        function handleLogoutClick(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                clearUserSession();
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+        function viewProfile() { alert('Profile page coming soon!'); }
+        function viewBookings() { alert('My Bookings page coming soon!'); }
+        function viewFavorites() { alert('Favorites page coming soon!'); }
+        document.addEventListener('DOMContentLoaded', () => { initializeUserMenu(); });
+    </script>
+    <script>
+        function openTaxiBooking() {
+            if (!checkUserLogin()) {
+                alert('Please login to book a taxi');
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('taxiBookingModal').style.display = 'flex';
+        }
+
+        function closeTaxiBooking() {
+            document.getElementById('taxiBookingModal').style.display = 'none';
+        }
+
+        async function submitTaxiBooking(event) {
+            event.preventDefault();
+            
+            const taxiData = {
+                pickupLocation: document.getElementById('taxiPickup').value,
+                dropLocation: document.getElementById('taxiDrop').value,
+                date: document.getElementById('taxiDate').value,
+                time: document.getElementById('taxiTime').value,
+                vehicleType: document.getElementById('taxiVehicleType').value,
+                distance: document.getElementById('taxiDistance').value,
+                estimatedPrice: document.getElementById('taxiPrice').value
+            };
+
+            const success = await bookTaxi(taxiData);
+            if (success) {
+                closeTaxiBooking();
+                document.getElementById('taxiBookingForm').reset();
+            }
+        }
+
+        document.getElementById('taxiBookingModal').addEventListener('click', (e) => {
+            if (e.target.id === 'taxiBookingModal') {
+                closeTaxiBooking();
+            }
+        });
+    </script>
+</body>
+</html>
